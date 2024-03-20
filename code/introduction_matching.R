@@ -203,7 +203,7 @@ df_desc %>%
   ) -> df_desc
 
 c(
-  'SOC Code',
+  'SOC',
   'Occupation',
   'Cluster',
   'Employment',
