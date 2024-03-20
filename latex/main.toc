@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Introduction}{5}{}%
+\contentsline {section}{\numberline {2}Methods}{5}{}%
+\contentsline {subsection}{\numberline {2.1}The Occupational Information Network}{5}{}%
+\contentsline {subsection}{\numberline {2.2}Skill Sets}{6}{}%
+\contentsline {subsection}{\numberline {2.3}A Euclidean Approach to Career Matching}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}An Initial Model for Euclidean Career Matching}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}A Weighted Euclidean Approach to Career Matching}{7}{}%
+\contentsline {subsubsection}{\numberline {2.3.3}Linear Weights for Euclidean Career Matching}{8}{}%
+\contentsline {subsubsection}{\numberline {2.3.4}Adjusting for Overqualification}{8}{}%
+\contentsline {subsection}{\numberline {2.4}Data and Implementation}{9}{}%
+\contentsline {section}{\numberline {3}Results}{11}{}%
+\contentsline {subsection}{\numberline {3.1}Most Compatible Occupations}{11}{}%
+\contentsline {subsection}{\numberline {3.2}Similarity Matrix}{14}{}%
+\contentsline {section}{\numberline {4}Discussion}{14}{}%
+\contentsline {section}{\numberline {5}Conclusion}{16}{}%
+\contentsline {section}{References}{17}{}%
+\contentsline {section}{Appendix}{18}{}%

@@ -9,14 +9,11 @@
     backend=biber,
     style=apa
 ]{biblatex}
-% \usepackage[title,titletoc]{appendix}
 
 % Equations
-% \include{equations}
 \input{equations}
 
 % Tables
-% \include{tables}
 \input{tables}
 
 % References
@@ -357,13 +354,6 @@ similarity scores are too high when comparing mostly unrelated occupations
 (e.g. in ``blue-collar'' matches against technical positions). That is, though
 the model's matching predictions ``make sense'', the degree of similarity, for
 some careers, is grossly overestimated.
-% (e.g. in the ``blue-collar" matches against more technical, specialized, positions).
-% As regards precision, however, the Euclidean approach to career matching is
-% evidently suboptimal. For one thing, similarity scores are too high, specially
-% when comparing occupations that have little or nothing to do with one another,
-% as we have in this exercise. That is, though the model's matching predictions
-% ``make sense'', the degree of similarity, for some careers, is grossly
-% overestimated.
 
 Indeed, the compatibility of, say, dishwashers with engineers and physicists is
 relatively low, which is realistic; but, at almost 40\%, it is still,
@@ -382,19 +372,6 @@ compatibility scores are correct. Nevertheless, the actual numeric values of
 these similarities are somewhat out of proportion; and more reasonable figures
 would be in the range of 40\% to 50\%, around 10\% less than the coefficients
 obtained with the Euclidean method.
-
-% Indeed, the compatibility of, say, dishwashers with engineers and physicists is
-% relatively low, which is realistic; but, at almost 40\%, it is still,
-% objectively, not low enough. And the same applies to credit analysts, as well.
-% For as an entry-level position in the field of Finance, credit analysts do seem
-% to be some sort of ``middle ground" between the other selected roles: in fact,
-% their job activities are mostly mathematical in nature, yet are neither as
-% demanding and abstract as those of physicists, nor as direct and concrete as
-% the repetitive manual labor of dishwashers. So, in this sense, the estimated
-% compatibility scores are correct. Nevertheless, the actual numeric values of
-% these similarities are, definitely, out of proportion; and more reasonable
-% figures would be in the range of 30\% to 40\%, much lower than the coefficients
-% obtained with the Euclidean matching method.
 
 A second, more encompassing, deficiency of this approach, that could even help
 to explain the first one, has to do with factors that we deliberately left out
@@ -482,9 +459,5 @@ it is, at least, a step in the right direction.
 \section*{Appendix}
 \addcontentsline{toc}{section}{Appendix}
 \DetailedSkillSets
-% \begin{appendices}
-%     \section{Detailed Skill Sets}
-%     \DetailedSkillSets
-% \end{appendices}
 
 \end{document}
