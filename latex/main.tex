@@ -1,0 +1,489 @@
+% \documentclass[12pt]{article}
+\documentclass{article}
+\usepackage{xr}
+\usepackage{physics}
+\usepackage{float}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\usepackage[
+    backend=biber,
+    style=apa
+]{biblatex}
+% \usepackage[title,titletoc]{appendix}
+
+% Equations
+% \include{equations}
+\input{equations}
+
+% Tables
+% \include{tables}
+\input{tables}
+
+% References
+\addbibresource{references.bib}
+
+% Title
+\title{
+    Introduction to Quantitative Career Matching:\\
+    How to Statistically Pick the Right Occupation
+}
+\author{Cao Bittencourt}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+% Abstract
+\begin{abstract}
+    \noindent
+    In this introductory paper, we address the crucial, but highly neglected, subject of data-driven career choice and development. We begin by sketching out the most basic approach to quantitative career matching, and test our model by calculating career compatibility coefficients with data from the United States' primary source of occupational information, the O*NET framework. We, then, illustrate the results with a sample of occupations from O*NET's database, and describe the best matches for each selected career. Despite the model's simplicity, we found career matches to be very accurate, although not as precise as they would be had we employed superior methods. In the future, we expect to cover some advanced material, deliberately left out of this introduction, and detail more sophisticated and performant models.\\
+
+    \noindent
+    \textbf{Keywords:} Career matching; Career compatibility; Career choice; Career development; Vocational choice; Occupational Information Network.
+\end{abstract}
+
+% Table of contents
+\newpage
+\tableofcontents
+
+% List of tables
+\newpage
+\listoftables
+
+% Introduction
+\newpage
+\section{Introduction}
+Choosing the right occupation is one of the most important decisions in life.
+In fact, a considerable portion of a person's life -- generally, a third of it
+-- is actually spent working. Additionally, finding a career that is suitable
+for one's skill set and natural aptitudes greatly impacts job performance and
+overall satisfaction. Having sufficient compensation to feed a family, and
+adequate work-life balance, are also crucial. And, for some individuals, we
+could even cite self-fulfillment and ethical reasons as major factors
+contributing to the significance of work.
+
+Given this overarching importance of career choice and development, we would
+expect to find many quantitative approaches to the issue in the scientific
+literature. Nonetheless, despite some competent efforts by psychometricians and
+personality theorists
+\parencites[e.g.][]{holland1959theory, holland1997making}{schein1978careerdynamics,
+    schein1993careeranchors}, not much has been done to address this problem in a
+purely data-driven manner.
+
+In the late 1990s, however, a notable achievement in this area was brought
+about by the Occupational Information Network \parencite{onet1998data}. Sponsored by the United States Department of Labor, this
+program set out to quantify job requirements in a standardized fashion. Their
+research resulted in a robust database of career paths, which includes numeric
+estimates of competence levels for dozens of abilities; as well as several
+other characteristics, such as the frequency of typical work activities, the
+seriousness of expected job hazards, etc. Their catalog of occupations is vast,
+and their data have been updated frequently for over two decades.
+
+But even with such rich information publicly available, there is still a lack
+of statistical modeling of it. In this series of articles, we aim to fix this.
+Starting with the most immediate concepts, we expect to document all
+mathematical methods we have devised to tackle the study of career choice and
+development. Here, we detail a basic approach to quantitative career matching
+based on the estimation of compatibility scores. In the future, we shall cover
+more complex matching algorithms, and advanced topics, like identifying
+occupations' core attributes, assessing the generality of career paths (to
+distinguish between generalist and specialist workers), calculating
+employability coefficients, constructing optimal strategies for career
+planning, talent acquisition, and much more.
+
+% Methods
+\section{Methods}
+\subsection{The Occupational Information Network}
+The Occupational Information Network (O*NET) is an American primary source of
+occupational information. It was developed during the mid 1990s, and published
+in 1998, by a team of public and private sector organizations, in partnership
+with the Department of Labor's Employment and Training Administration. Its aim
+is to facilitate the maintenance of a skilled workforce through the collection
+and dissemination of occupational data \parencites{mariani1999onet}{onet2024about}.
+
+Essentially, the O*NET model provides a thorough, quantitative, description of
+hundreds of SOC \parencite[Standard Occupational Classification, see][]{bls2018soc} career paths in
+a vectorized format. O*NET accomplishes this task by systematically evaluating
+the competencies of actual people in the labor market, on a 0 to 100 scale, in
+order to derive numeric guidelines on what attributes are required for each
+position.
+
+Therefore, the resulting ``career profiles" from O*NET's surveys are meant to
+be taken as ``canonical representations" of SOC occupations: they ``map out"
+what, say, an engineer, an accountant, or any other occupation tends to ``look
+like", in terms of professional attributes.
+
+\subsection{Skill Sets}
+With the convenient structure of the O*NET framework in mind, we begin by
+defining and measuring the professional attributes that characterize each
+economic agent in the labor market. To do so, we establish a bounded, uniform
+scale from 0 (complete incompetence) to 100 (complete mastery), such that:
+\EqnAttribute where $a_{i}^{k}$ is the $i$-th professional attribute of a
+person $k$. Moreover, let us denote as a ``skill set", or ``career profile",
+the vector of their $m$ attributes, like so: \EqnSkillSet
+
+Thus, all individuals in the economy -- whether employed, or not -- are
+mathematically described by their own skill sets, or career profiles; and this
+applies to regular SOC occupations as well, like the ones included in the O*NET
+database.
+
+\subsection{A Euclidean Approach to Career Matching}
+Finally, individuals and occupations are said to be similar to the exact degree
+to which their vectors of professional attributes, or skill sets, overlap.
+
+To measure this compatibility, we can utilize several matching methods. Some of
+these are complicated, and require lengthy explanations, while others are much
+easier to introduce. As the scope of this article is very limited, we only
+cover the most basic of methods: the Euclidean approach to career matching.
+
+\subsubsection{An Initial Model for Euclidean Career Matching}
+In this approach to career matching, compatibility is estimated by the inverse
+function of Euclidean distance. Hence, we first define this concept:
+\EqnEuclideanDistance
+
+Equation (\ref{eqn:euclidean_distance}) measures the absolute distance from the
+professional attribute vector $\boldsymbol{a_{\boldsymbol{k}}}$ to a comparison
+vector $\boldsymbol{a_{q}}$; in other words, it tells us how these two skill
+sets are \textit{dissimilar}.
+
+But, of course, our interest here is career compatibility, not its opposite.
+Furthermore, similarity is typically expressed as a percentage; and for this,
+we need dissimilarity to be bounded to a known interval. Therefore, in order to
+convert the Euclidean distance (\ref{eqn:euclidean_distance}) to a similarity
+metric, we need to employ some sort of normalization procedure, like the
+following: \EqnNormalizedDistance
+
+The denominator in equation (\ref{eqn:normalized_distance}) is the maximum
+theoretical distance to the $\boldsymbol{a_q}$ comparison skill set. That is,
+here we normalize distance (\ref{eqn:euclidean_distance}) by calculating the
+distance to $\boldsymbol{a_q}$ from its most dissimilar vector. So, for each
+coordinate of the $\boldsymbol{a_{q}}$ skill set, we measure which distance
+would be greater: that from the scale's lower bound (viz. 0), or that from the
+upper bound (viz. 100), as any other distance has to be less than those to the
+scale's limits. This way, the denominator corresponds to the maximum distance
+to $\boldsymbol{a_{q}}$; and, consequently, the normalized distance
+$\tilde{d}(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) \in [0,1] \
+    \forall \ \boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}$.
+
+At last, similarity is easily derived from the normalized dissimilarity:
+\EqnSimilarity
+
+As opposed to equations (\ref{eqn:euclidean_distance}) and
+(\ref{eqn:normalized_distance}), this formula describes the measure to which
+career profiles are \textit{similar}. Again, it is evident
+$s(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) \in [0,1] \ \forall \
+    \boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}$. Thus, we can estimate, as
+a percentage, how compatible a person is with an occupation, and whether they
+are alike in terms of their competencies, or not.
+
+\subsubsection{A Weighted Euclidean Approach to Career Matching}
+Although straightforward, the above method is far too simplistic, for each and
+every competency is given the same importance in matching; and this is,
+clearly, not reasonable. In reality, some professional attributes are,
+definitely, more important to some occupations, while to others they are less
+or even not important.
+
+Consider, for instance, the absurdity of a barber who knows a lot about the
+arts, and fashion, and entertaining customers, and even accounting and
+bookkeeping, and yet does not know how to actually cut hair. One could call
+them artistic, or stylish, but hardly a barber. For despite the usefulness of
+all these other things for the barber, they are not nearly as important as
+their main activity (viz. cutting hair).
+
+This is the issue of weighting professional competencies, and it is crucial for
+adequate career matching. In fact, to the degree to which attributes are said
+to be ``central", or ``indispensable", to certain career paths (like being able
+to cut hair is for a barber), so too weighting these attributes is
+indispensable for career matching algorithms to function properly.
+
+Now, as it is with matching methods, here also we find a variety of manners of
+weighting professional attributes. The first, which we cover below, is to use
+linear weights. This said, quadratic, logistic, or any sort of increasing
+weights can be employed as well. In our more complex career matching
+algorithms, for example, we make use of a specific function to determine skill
+sets' core competencies, and weight them accordingly, so as to significantly
+improve models' performance. For illustrative purposes, however, linear weights
+seem to suffice.
+
+\subsubsection{Linear Weights for Euclidean Career Matching}
+When implementing linear weights with the Euclidean approach, each distance
+between career profiles is multiplied by the attributes of the comparison skill
+set (viz. that to which compatibility is to be calculated). Thus, distances to
+the most important competencies are emphasized, while the remaining receive
+less importance.
+
+Mathematically, the weighted metrics (with subscript $w$) for similarity scores
+and normalized distances are as follows: \EqnWeightedSimilarity where
+\EqnWeightedDistance
+
+With these adjusted equations, Euclidean distance is weighted proportionally to
+the professional attribute levels of the $\boldsymbol{a_{q}}$ career profile.
+This means that the matching method is optimized for every comparison skill
+set, as irrelevant competencies are left out of the analysis, and the
+``indispensable" ones (e.g. cutting hair for a barber, dentistry for a dentist)
+are given their full importance.
+
+\subsubsection{Adjusting for Overqualification}
+A positive side effect of the use of weights in career matching is an implicit
+correction for the statistical penalties of overqualification. These arise, in
+the original approach, whenever an individual has additional competencies from
+other fields that are not required at a certain position, and cause the
+unadjusted distance (\ref{eqn:normalized_distance}) to yield less favorable
+similarity estimates. For, if $a_{i}^{k} > a_{i}^{q}$, then
+\EqnDistanceDerivative
+
+This overqualification problem is highly detrimental for matching accuracy, as
+it tends to ``punish" people with many professional attributes, whether they
+are skilled generalists or merely hobbyists. But, of course, as the absurd
+scenario of the useless barber mentioned above, this too is not reasonable at
+all. Indeed, no one would say, for instance, that an airline pilot is less of a
+pilot if they also know how to cut hair, just as we do not say a barber is less
+of a barber if they cannot fly an airplane. Put another way, competencies that
+have ``nothing to do" with an occupation should not be a limiting factor to
+career compatibility.
+
+The application of matching weights helps to mitigate this, as the less
+important competencies are, rightly, given less importance; and those distances
+to completely irrelevant attributes (with competence levels of 0) are even
+nullified entirely, so that: \EqnUnweightedWeightedDistances
+
+Therefore, if a person has additional, unnecessary, skills, these weighting
+techniques provide a correction for the penalties of overqualification,
+decreasing the normalized Euclidean distance and increasing compatibility.
+
+\subsection{Data and Implementation}
+The version of the O*NET database utilized contains 873 unique career profiles,
+even including a few variants on top of SOC occupations. For brevity's sake,
+though, they are succinctly described below in terms of general clusters:
+\GeneralOccupationalStatistics
+
+As it concerns matching procedures, career compatibility coefficients were
+estimated by comparing all available occupations to one another, instead of
+matching against human subjects. This was done for eight reasons: to ensure the
+model's internal consistency; to avoid potential sampling biases; to have more
+reliable ``targets" when assessing accuracy (as individuals' career profiles
+tend to be less defined than O*NET's ``canonical skill sets''); in a similar
+fashion, to make results more objectively interpretable for the reader; to
+simplify this initial model by postponing, for now, the making of a
+competence-preference distinction, that shall be needed later on to account for
+the fact that one's skills are not always aligned with their preferences;
+because matching careers to careers is, essentially, the same as matching
+individuals to careers (for both are defined by competency vectors); because
+O*NET's 873 occupations already provide a somewhat large sample size for this
+type of study; and, of course, because the O*NET data are, themselves, derived
+from rigorous labor market surveys, and consequently their career profiles are,
+in fact, representative of the skills of real people. So, even though one of
+the model's end goals is to help \textit{individuals} find the right career, at
+the present moment, we can test these methods ``internally", without resourcing
+to further empirical research.
+
+Unfortunately, this also means we cannot show most of our results, as the O*NET
+database contains too many career paths, and the scope of an introductory
+article does not allow for all their matches to be displayed. Hence, for this
+exercise, we only present four occupations: mechanical engineers, physicists,
+credit analysts, and dishwashers. These were choosen to illustrate a
+``sufficient range'' of careers: two highly qualified STEM occupations, the
+first more ``hands-on'' than the latter; one of the simplest roles in the
+economy (viz. dishwashers); and the other somewhere in between (viz. credit
+analysts). Their main characteristics are summarized in Table
+\ref{tab:summary_occupations}. \SummaryOccupations
+
+The career profiles used for matching were composed of three broad categories
+of professional attributes from the O*NET framework, namely: ``Skills",
+``Abilities", and ``Fields of Knowledge". These three categories combined sum
+to exactly 120 competencies, and are detailed in the Appendix. The remaining
+categories of attributes (e.g. ``Interests", ``Work Values") do not constitute
+``competencies" in the strict sense of the word, so they were not included in
+the analysis. Additionally, a few of the original attribute names were changed
+to reduce ambiguity (e.g. from ``Design" to ``Industrial Design").
+
+Finally, all calculations were implemented in the R programming language, with
+packages we wrote and published to carry out Euclidean matching and other
+algorithms \parencite{atlas.match}. The complete scripts and data can be found in an online
+repository \parencite{intro_career_matching}.
+
+% Results
+\section{Results}
+
+\subsection{Most Compatible Occupations}
+Again, despite the small selection of four occupations, there are still too
+many career matches to be displayed here. Thus, we only illustrate the results
+of the weighted Euclidean approach with the ten most compatible occupations.
+\MatchesEngineers \MatchesPhysicists \MatchesCreditAnalysts \MatchesDishwashers
+
+\subsection{Similarity Matrix}
+We also found it useful to build a similarity matrix, with which one can easily
+compare occupations' compatibility coefficients: \SimilarityMatrix
+
+As noted in the similarity matrix, comparison occupations are on the horizontal
+axis, meaning that Table \ref{tab:similarity_matrix} should be read vertically.
+This is because the normalization (\ref{eqn:normalized_distance}) and weighting
+(\ref{eqn:weighted_distance}) techniques employed imply the characteristic
+symmetry of Euclidean distance is, in most cases, lost.
+
+Therefore, the table shows, for example, that mechanical engineers have 62\%
+compatibility with dishwashers, while dishwashers have only 38\% compatibility
+with mechanical engineers; that is to say engineers are sufficiently qualified
+to perform the job activities of dishwashers, but not the other way around.
+
+% Discussion
+\section{Discussion}
+Assessing the matching results in Tables
+\ref{tab:similarity_engineers}--\ref{tab:similarity_dishwashers}, we could say
+this Euclidean model is quite accurate: mechanical engineers are matched to ten
+other types of engineers; while theoretical physicists are similar to
+astronomers, biophysicists, mathematicians, and scientific roles, in general;
+credit analysts, adequately, cluster with occupations in the financial
+industry; and dishwashers, in turn, have high compatibility with janitors,
+cleaners, and so-called ``blue-collar" positions.
+
+When we analyze Table \ref{tab:similarity_matrix}, we find results to be
+likewise accurate. Firstly, the STEM career paths are fairly close to one
+another, at 80\% similarity. This is expected, since engineers are, in a way,
+applied physicists. Dishwashers, on the other hand, are not really similar to
+either one, being more compatible with credit analysts. And, finally, credit
+analysts, have roughly 60\% similarity with the other three occupations,
+indicating they are somewhat compatible, and undifferentiated in this respect.
+It also stands out, as already mentioned, that the ``highly qualified" profiles
+have high compatibility scores with the ``less qualified", or ``simpler", ones,
+while the reverse is not true.
+
+As regards precision, however, the baseline Euclidean approach to career
+matching presented here is evidently suboptimal. For one thing, similarity
+scores are too high when comparing occupations that have little or nothing to
+do with one another, as we have in this exercise. That is, though the model's
+matching predictions ``make sense'', the degree of similarity, for some
+careers, is grossly overestimated.
+% As regards precision, however, the Euclidean approach to career matching is
+% evidently suboptimal. For one thing, similarity scores are too high, specially
+% when comparing occupations that have little or nothing to do with one another,
+% as we have in this exercise. That is, though the model's matching predictions
+% ``make sense'', the degree of similarity, for some careers, is grossly
+% overestimated.
+
+Indeed, the compatibility of, say, dishwashers with engineers and physicists is
+relatively low, which is realistic; but, at almost 40\%, it is still,
+objectively, not low enough. And their similarity with credit analysts is even
+worse, with an exagerated estimate of 54\%. Thus, while it is true that
+dishwashers are not highly compatible with any of these occupations, their
+similarity with all of them, specially credit analysts, should be much lower.
+
+[To a lesser extent, the same applies to credit analysts, as well]. For as an
+entry-level position in the field of Finance, credit analysts do seem to be
+some sort of ``middle ground" between the other selected roles: in fact, their
+job activities are mostly mathematical in nature, yet are neither as demanding
+and abstract as those of physicists, nor as direct and concrete as the
+repetitive manual labor of dishwashers. So, in this sense, the estimated
+compatibility scores are correct. Nevertheless, the actual numeric values of
+these similarities are somewhat out of proportion; and more reasonable figures
+would be in the range of 40\% to 50\%, around 10\% less than the coefficients
+obtained with the Euclidean matching method.
+
+% Indeed, the compatibility of, say, dishwashers with engineers and physicists is
+% relatively low, which is realistic; but, at almost 40\%, it is still,
+% objectively, not low enough. And the same applies to credit analysts, as well.
+% For as an entry-level position in the field of Finance, credit analysts do seem
+% to be some sort of ``middle ground" between the other selected roles: in fact,
+% their job activities are mostly mathematical in nature, yet are neither as
+% demanding and abstract as those of physicists, nor as direct and concrete as
+% the repetitive manual labor of dishwashers. So, in this sense, the estimated
+% compatibility scores are correct. Nevertheless, the actual numeric values of
+% these similarities are, definitely, out of proportion; and more reasonable
+% figures would be in the range of 30\% to 40\%, much lower than the coefficients
+% obtained with the Euclidean matching method.
+
+A second, more encompassing, deficiency of this approach, that could even help
+to explain the first one, has to do with factors that we deliberately left out
+of the model. Educational attainment, for instance, is one of them, and it
+could drastically change matching results, as several career paths have basic
+requirements in the form of specific degrees, certifications, years of
+experience, and so on and so forth.
+
+Of course, these other aspects are all very important, and a full analysis of
+career compatibility should take them into consideration. That being said, here
+we decided to exclude them for two main reasons. The first is that adding such
+variables alongside the 120 competencies without modification to the matching
+method does not work, in purely practical terms, because the algorithm employed
+is not suitable to perform binary filtering based on key, necessary conditions,
+but rather to compute the distance between vectors.
+
+The second reason is that these requirements are, actually, best conceptualized
+as \textit{independent} coefficients themselves, that can, then, be multiplied,
+or otherwise combined with any kind of function to limit career compatibility
+scores. Moreover, skill set similarity, the sole object of this initial model,
+does not imply -- or is even implied by -- educational attainment, years of
+experience, etc. In other words, as these things are separate in the real
+world, so too they should separate in statistical models. And this ``separation
+of concerns" is more parsimonious and leads to a ``cleaner", theoretically
+consistent, framework.
+
+At last, and most importantly, we must repeat that this Euclidean approach to
+career matching is an oversimplification for illustrative purposes; and that we
+have already developed more advanced methods to account for its problems. In
+fact, it is easy to derive better matching estimates only by tweaking the model
+presented above.
+
+An immediate improvement, for example, would be to adjust weighting procedures
+to further emphasize the core competencies of comparison occupations by
+substituting the linear weights with a polarizing, logistic-like function. And
+one could also apply scaling functions to normalized Euclidean distances, in
+order to correct the similarity metric directly (e.g. by means of linear
+interpolations, root functions, etc).
+
+Having said this, beyond some ``quick fixes", more dramatic improvements
+require rewriting the entire matching algorithm to another format. But then
+again, the goal of this article was to provide an introduction to the crucial
+issue of quantitative career matching, not to exhaust the subject. In future
+works, we expect to be able to explain at length our sophisticated and
+performant models.
+
+% Conclusion
+\section{Conclusion}
+In this paper, we described the simplest approach to quantitative career
+matching, and illustrated its application with a sample of data from a robust
+source of occupational information, namely the O*NET framework. We also
+discussed a few of the fundamental issues involved in assessing career path
+compatibility, like competency weighting, and the problem of overqualification.
+In an effort to keep the article concise and accessible, however, we
+deliberately ignored many of the other complexities surrounding this subject.
+
+Even so, we found our results to be mostly accurate, though not as precise as
+they would be had we employed superior methods. We highlight that the sample
+occupations were matched as ``expected": engineers with engineers; physicists
+with scientists; credit analysts with other roles in the financial sector; and
+dishwashers with janitors, and ``blue-collar" positions. Nevertheless, we
+noted, as well, that similarity scores were too high for some of these matches.
+
+To tackle this inconsistency, we proposed an ideal, parsimonious solution, in
+which a number of independent coefficients ought to be calculated to separately
+account for the various aspects affecting compatibility. In addition, we also
+proposed a couple of more immediate ``quick fixes" to adjust matching
+estimates.
+
+Overall, as suggested by the article's title, this was an initial sketch to
+address a most important topic: that of rationally choosing a career. And,
+despite the basic model presented here not allowing to fully develop what
+``picking the right occupation" looks like statistically, we do hope and think
+it is, at least, a step in the right direction.
+
+% References
+\newpage
+\printbibliography[
+    heading=bibintoc,
+    title={References}
+]
+
+% Appendix
+\newpage
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\DetailedSkillSets
+% \begin{appendices}
+%     \section{Detailed Skill Sets}
+%     \DetailedSkillSets
+% \end{appendices}
+
+\end{document}

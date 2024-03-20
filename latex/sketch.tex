@@ -1,0 +1,480 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{makecell}
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+\usepackage[tableposition=top]{caption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+
+% Tables
+\input{tables}
+
+\title{Quantitative Career Matching: 
+\\ How to Statistically Pick the Right Occupation}
+\author{Cao Bittencourt}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+% Abstract
+\begin{abstract}
+   
+\end{abstract}
+
+\newpage
+\tableofcontents
+
+\newpage
+\listoftables
+
+% Introduction
+\newpage
+\section{Introduction}
+why choosing the right career is important
+\\ why objective metrics help to choose the right career 
+
+% Methodology
+\section{Methods}
+\subsection{The Occupational Information Network}
+The Occupational Information Network (ONET) is an American primary source of occupational information. This program has been sponsored by the U.S. Department of Labor/Employment and Training Administration (USDOL/ETA) with the aim of facilitating the development and maintenance of a skilled workforce [cite ONET online].
+
+Essentially, the ONET framework ranks hundreds of SOC (Standard Occupational Classification) career paths on a list of professional attributes. ONET accomplishes this task by evaluating the competencies of actual people in the labor market, with a 0 to 100 scale, in order to derive quantitative guidelines on what attributes are required for each position. Therefore, the ``career profiles" from the ONET framework are meant to be taken as ``canonical representations" of SOC occupations: they ``map out" what, say, an Engineer, an Accountant, or any other occupation generally ``looks like", in terms of professional attributes.
+
+% ONET online framework
+% \\ how the ONET online data allows for quantitative career matching
+% \\ which of the ONET online data should be used (skills, abilities, fields of knowledge)
+% \\ briefly mention factor analysis as a tool to generate reduced questionnaires
+
+% \subsection{Mathematical Notation}
+\subsection{Skill Sets}
+With the convenient structure of the ONET framework in mind, we begin by defining and measuring the professional attributes that characterize each and every individual in the labor market. To do so, let us we establish a bounded, uniform scale from 0 (complete incompetence) to 100 (complete mastery), such that: 
+\begin{gather}
+\label{eqn:attribute}
+    a_{i}^{\upsilon} \in [0,100] \ \forall \ i, \upsilon
+,\end{gather}
+where $a_{i}^{\upsilon}$ is the $i$-th professional attribute of a person $\upsilon$. Furthermore, we denote a ``skill set", or ``career profile", as the collection of all $m$ attributes of a person, like so:
+\begin{gather}
+\label{eqn:skill_set}
+    \vb{a_{\boldsymbol{\upsilon}}} = (a_{1}^{\upsilon}, ..., a_{m}^{\upsilon})
+.\end{gather}
+
+Thus, all individuals in the economy -- whether employed, or not -- are mathematically described by their own skill sets, or career profiles; and this applies to regular SOC occupations as well, like the ones included in the ONET database.
+
+% % Mathematical Notation
+% \section{Mathematical Notation}
+% \subsection{Skill Sets}
+% With the convenient structure of the ONET framework in mind, we begin by defining and measuring the professional attributes that characterize each and every individual in the labor market. To do so, we establish a bounded, uniform scale from 0 (complete incompetence) to 100 (complete mastery), such that: 
+% \begin{gather}
+%     a_{i}^{\upsilon} \in [0,100] \ \forall \ i, \upsilon
+% ,\end{gather}
+% where $a_{i}^{\upsilon}$ is the $i$-th professional attribute of a person $\upsilon$. Furthermore, we define a ``skill set", or ``career profile", as the collection of all $m$ attributes of a person, like so:
+% \begin{gather}
+%     \vb{a_{\boldsymbol{\upsilon}}} = (a_{1}^{\upsilon}, ..., a_{m}^{\upsilon})
+% .\end{gather}
+% % Standard Occupational Classification system (SOC)
+% Thus, all individuals in the economy are mathematically described by their own skill sets, or career profiles; and this applies to regular SOC occupations as well, like the ones included in the ONET database.
+
+% Finally, individuals and occupations are said to be similar to the exact degree to which their vectors of professional attributes, or skill sets, overlap.
+
+% \subsection{Utility-Competency Distinction}
+% Now, the career profiles obtained from the ONET framework are meant to be taken as ``canonical representations" of SOC occupations. In other words, they ``map out" what, say, an Engineer, an Accountant, or any other occupation generally ``looks like", in terms of professional attributes, or competencies.
+
+% However, when we speak of quantitative career \textit{matching}, skill set similarity is but one concern. That is, we are not only interested in what occupations ``look like" and whether an individual is similar to such and such careers, and meets their requirements: we are also just as interested in whether they even \textit{want} to fill those positions to begin with.
+
+% Therefore, to properly match individuals and occupations, we must make a utility-competency distinction, where the competency scale measures the level, or capacity, of an individual in a certain attribute; and personal preference, or utility, on the other hand, measures, with the same bounded scale, the degree to which they want to use that attribute in their ``ideal" career.
+
+% \subsection{Modes of Matching}
+% This distinction, then, determines a preference-adjusted career profile $\vb{a_{\boldsymbol{\upsilon}}^{\boldsymbol{u}}}$, to be used for matching. But, as this preference-adjusted profile can be derived in a variety of ways, the utility-competency distinction also determines several ``modes of matching". For brevity's sake, we describe just four of these ``modes".
+
+% Mode 1 disregards current competency levels and takes into account only preferences. Thus, career matching algorithms use the following vector instead of the individual's $\vb{a_{\boldsymbol{\upsilon}}}$ skill set:
+% \begin{gather}
+%     \vb{a_{\boldsymbol{\upsilon}}^{\boldsymbol{u}}} \coloneqq \boldsymbol{\vb{u_\upsilon}} = (u_{1}^{\upsilon}, ..., u_{m}^{\upsilon})
+% ,\end{gather}
+% where $u_{i}^{\upsilon} \in [0,100] \ \forall \ i, \upsilon$ is the preference an individual has for the $i$-th attribute. This means in their ``ideal", or preferred, career they would like to employ such attribute at $u_{i}^{\upsilon}$ rather than some other level.
+
+% A second mode of matching entirely disregards preferences in favor of current competency levels: 
+% \begin{gather}
+%     \vb{a_{\boldsymbol{\upsilon}}^{\boldsymbol{u}}} \coloneqq \vb{a_{\boldsymbol{\upsilon}}}
+% .\end{gather}
+
+% This is the mode we have considered before introducing the utility-competency distinction: each individual is exclusively defined by their $\vb{a_{\boldsymbol{\upsilon}}}$ vector of competencies. In contrast with Mode 1, we could say career matches obtained with Mode 2 are not necessarily ``ideal", or preferred, occupations, but instead \textit{feasible} ones (i.e. positions which, in principle, are readily attainable by an individual at their \textit{current} competency level).
+
+% Yet another mode of matching consists of prioritizing preferences over competency levels, while still taking into account both metrics. Thus, Mode 3 determines the following preference-adjusted skill set:
+
+% \begin{gather}
+%     \vb{a_{\boldsymbol{\upsilon}}^{\boldsymbol{u}}} \coloneqq 
+%         \begin{cases}
+%         u_{i}^{\upsilon}, \text{if } a_{i}^{\upsilon} > u_{i}^{\upsilon}.
+%         \\ a_{i}^{\upsilon}, \text{otherwise.}
+%         \end{cases}
+% .\end{gather}
+
+% Here, individuals opt for occupations that do not require them to utilize attributes at a level higher than their preferences (i.e. preferences act as a ``bottleneck", limiting matches). This seems adequate when dealing with anyone transitioning careers; for these people, by definition, do not necessarily want to continue to exercise their competencies at the \textit{current} level; otherwise, they would not be transitioning careers at all.
+
+% So, for example, if a dentist wanted to change industries, it would not suit them to have the matching algorithm take into account their \textit{actual} skill level in dentistry. For if it did, they would be matched to the very career from which they wish to transition. Therefore, if said dentist had a dentistry level of $a_{d}^{\Delta} = 80$, but, being disillusioned with their career path, only a preference of $u_{d}^{\Delta} = 20$, the matching algorithm should refrain from recommending occupations with dentistry levels close to the higher threshold of 80 and further from the dentist's much lower preference (viz. 20).
+
+% Lastly, Mode 4 is analogous to the previous one:
+
+% \begin{gather}
+%     \vb{a_{\boldsymbol{\upsilon}}^{\boldsymbol{u}}} \coloneqq 
+%         \begin{cases}
+%         u_{i}^{\upsilon}, \text{if } a_{i}^{\upsilon} < u_{i}^{\upsilon}.
+%         \\ a_{i}^{\upsilon}, \text{otherwise.}
+%         \end{cases}
+% .\end{gather}
+
+% But, unlike Mode 3, this preference-adjusted skill set is adequate for people still developing their abilities, like high-school students, who have yet to obtain the desired competency levels $u_{i}^{\upsilon}$, which lag behind the current ones $a_{i}^{\upsilon}$. For if these and similar people were to be matched with strict competency comparisons (i.e. Mode 2), they would only find career matches in the very most entry level positions. With Mode 4, on the contrary, matching algorithms provide career recommendations that are a compromise between ``feasible" and ``ideal", that is: the ``closest stop" on the path to their preferred occupation.
+
+% Initial Model
+% \subsection{Initial Model}
+\subsection{A Euclidean Approach to Career Matching}
+Finally, individuals and occupations are said to be similar to the exact degree to which their vectors of professional attributes, or skill sets, overlap.
+
+To measure this compatibility, we can utilize several matching methods. Some of these are complicated, and require lengthy explanations, while others are much easier to introduce. As the scope of this article is very limited, we only cover the most basic of methods: the Euclidean approach to career matching.
+
+However, it should be noted that this method is by no means the most accurate or precise. Indeed, we have developed more sophisticated matching techniques, which yield much better results, but depend on several additional statistical procedures, and therefore cannot be satisfactorily explained in such a brief paper.
+
+% Finally, whatever the mode employed for matching may be -- whether Mode 1 (with the ``ideal" skill set), Mode 2 (with the ``feasible" skill set), or any other mode --, the matching algorithm applied is itself the same.
+
+% Of course, like there are many modes of matching, there are also many matching \textit{methods}. Some of these are complicated, and require lengthy explanations, while others are much easier to introduce. Again, as the scope of this article is very limited, we only cover the most basic of methods: the Euclidean approach to career matching.
+
+% However, it should be noted that this method is by no means the most accurate or precise. Indeed, we have developed more sophisticated matching techniques, which yield much better results, but depend on several additional statistical procedures, and therefore cannot be satisfactorily explained in such a brief paper. 
+% % So, for these reasons, only the Euclidean methodology is contemplated here.
+
+% To keep notation concise, in this presentation we assume the algorithm is applied with matching mode 2, as the method is the same for all modes of matching.
+
+\subsubsection{An Initial Model for Euclidean Career Matching}
+In this approach to career matching, compatibility is estimated by the inverse function of Euclidean distance. Hence, let us first define this concept:
+% With this said, we define the Euclidean distance between two vectors:
+\begin{gather}
+\label{eqn:euclidean_distance}
+    d(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) = 
+    \norm{\vb{a_{\boldsymbol{\upsilon}}} - \vb{a_{q}}} = 
+    \sqrt{
+    \sum_{i = 1}^{m}{
+    (a_{i}^{\upsilon} - a_{i}^{q})^2
+    }
+    }
+.\end{gather}
+
+Equation (\ref{eqn:euclidean_distance}) measures the absolute distance from the professional attribute vector $\vb{a_{\boldsymbol{\upsilon}}}$ to the comparison vector $\vb{a_{q}}$; in other words, it tells us how these two skill sets are \textit{dissimilar}. 
+
+But, of course, our interest here in career compatibility, not its opposite. [Furthermore], similarity is expressed as a percentage; and for this, we need dissimilarity to be bounded between 0 and 1. [Therefore], in order to convert the Euclidean distance (\ref{eqn:euclidean_distance}) to a similarity metric, we need to employ some sort of normalization procedure, like the following:
+\begin{gather}
+\label{eqn:normalized_distance}
+    \tilde{d}(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) = 
+    \sqrt{
+    \frac{
+    \sum_{i = 1}^{m}{
+    (a_{i}^{\upsilon} - a_{i}^{q})^2
+    }
+    }{
+    \sum_{i = 1}^{m}{
+    \max(100 - a_{i}^{q}, a_{i}^{q})^2
+    }
+    }
+    }
+.\end{gather}
+
+The denominator in equation (\ref{eqn:normalized_distance}) is the maximum theoretical distance to the $\vb{a_q}$ comparison skill set. That is, here we normalize the distance (\ref{eqn:euclidean_distance}) by calculating the distance to $\vb{a_q}$ from its most dissimilar vector. So, for each coordinate of the $\vb{a_{q}}$ skill set, we measure which distance would be greater: that from the scale's lower bound (viz. 0), or that from the upper bound (viz. 100), as any other distance has to be less than those to the scale's limits. This way, the denominator corresponds to the maximum distance to $\vb{a_{q}}$; and, consequently, the normalized distance $\tilde{d}(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) \in [0,1] \ \forall \ \vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}$.
+
+At last, similarity is easily derived from the normalized dissimilarity:
+\begin{gather}
+\label{eqn:similarity}
+    s(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) = 1 - \tilde{d}(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) 
+.\end{gather}
+
+As opposed to equations (\ref{eqn:euclidean_distance}) and (\ref{eqn:normalized_distance}), this formula describes the measure to which career profiles are \textit{similar}. Again, it is evident $s(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) \in [0,1] \ \forall \ \vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}$. Thus, we can estimate, as a percentage, how compatible a person is with an occupation, and whether they are alike in terms of their competencies, or not.
+
+\subsubsection{A Weighted Euclidean Approach to Career Matching}
+Although straightforward, the above method is far too simplistic, for each and every competency is given the same importance in matching; and this is, clearly, not reasonable. In reality, some professional attributes are, definitely, more important to some occupations, while to others they are less or even not important.
+
+Consider, for instance, the absurdity of a barber who knows a lot about the arts, and fashion, and entertaining customers, and even accounting and bookkeeping, but does not know how to actually cut hair. One could call them artistic, or stylish, but hardly a barber. For all these other things are useful for a barber, yet not nearly as their main activity (viz. cutting hair).
+
+This is the issue of weighting professional competencies, and it is crucial for adequate career matching. In fact, to the degree to which attributes are said to be ``central", or ``indispensable", to certain career paths (like being able to cut hair is for a barber), so too the appropriate weighting of these attributes is indispensable for career matching algorithms to function properly. 
+
+Now, as it is with matching methods, here also we find a variety of manners of weighting professional attributes. The first, which we cover below, is to use linear weights. This said, quadratic, logistic, or any other sort of weights can be employed as well. In our more complex career matching algorithms, for example, we make use of a very specific function to determine the ``indispensability" of human capital (i.e. competencies' relative importance), and this vastly improves models' accuracy and precision. For illustrative purposes, however, basic linear weights seem to suffice.
+
+\subsubsection{Linear Weights for Euclidean Career Matching}
+When implementing linear weights with the Euclidean approach, each distance between career profiles is multiplied by the attributes of the comparison skill set (viz. that to which compatibility is to be calculated). Thus, distances to the most important competencies are emphasized, while the remaining competencies receive less importance:
+\begin{gather}
+\label{eqn:weighted_distance}
+    \tilde{d}_w(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) = 
+    \frac{
+    \sum_{i = 1}^{m}{
+    a_{i}^{q} | a_{i}^{\upsilon} - a_{i}^{q} |
+    }
+    }{
+    \sum_{i = 1}^{m}{
+    a_{i}^{q} \max(100 - a_{i}^{q}, a_{i}^{q})
+    }
+    }
+    \\ s_w(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) = 1 - \tilde{d}_w(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}})
+.\end{gather}
+
+With this adjusted equation, professional attributes are weighted proportionally to the respective competency level of the $\vb{a_{q}}$ comparison career profile. This means that the matching algorithm optimizes itself for each and every comparison skill set, as irrelevant competencies are left out of the analysis, and the ``indispensable" ones (e.g. cutting hair for a barber, dentistry for a dentist) are given their full importance.
+
+\subsubsection{Adjusting for Overqualification}
+Another positive side effect of utilizing weights when matching is an implicit correction for overqualification. For, if an individual has additional competencies from other fields, which are not necessary at a certain position, the normalized unadjusted distance (\ref{eqn:normalized_distance}) yields less favorable matching results:
+\begin{gather}
+\label{eqn:distance_derivative}
+    a_{i}^{\upsilon} > a_{i}^{q} \iff
+    \frac{
+    \partial{\tilde{d}(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}})}}
+    {\partial{a_{i}^{\upsilon}}} > 0 \iff
+    \frac{
+    \partial{s(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}})}}
+    {\partial{a_{i}^{\upsilon}}} < 0
+.\end{gather}
+
+This overqualification problem is highly detrimental for matching accuracy, as it tends to ``punish" people with many professional attributes, whether they are skilled generalists or merely hobbyists. Of course, as the initial unweighted approach above, this too is not reasonable at all. Indeed, no one would say, for instance, an airline pilot is less of a pilot if they also know how to cut hair; and, likewise, we do not say a barber is less of a barber if they cannot fly an airplane.
+
+The application of matching weights helps to mitigate this, as the less important competencies are, rightly, given less importance; and those distances to completely irrelevant attributes (viz. with competency levels of 0) are even nullified entirely, so that:
+\begin{gather}
+\label{eqn:unweighted_vs_weighted_distance}
+    \tilde{d}_w(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) \leq
+    \tilde{d}(\vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}) \ \forall \ \vb{a_{\boldsymbol{\upsilon}}}, \vb{a_{q}}
+.\end{gather}
+
+Therefore, if a person has additional unnecessary skills, the use of these weighting techniques provides a correction for overqualification, decreasing the normalized Euclidean distance and increasing compatibility.
+
+\subsection{Data}
+
+The version of the ONET database utilized contains 873 occupations, including a few SOC variants. Because these are so numerous, they are succinctly described below in terms of general clusters:
+
+\GeneralOccupationalStatistics
+
+As it concerns matching procedures themselves, career compatibility coefficients were estimated for each one of the 873 available occupations. Nevertheless, limitations of scope appropriate for an introductory article did not allow for all these results to be displayed. 
+
+Hence, as the ONET database contains too many career paths, for this exercise, we only present four occupations. These are: mechanical engineers, physicists, credit analysts, and dishwashers. Their main characteristics are summarized in Table \ref{table:summary_occupations}.
+
+\SummaryOccupations
+
+The career profiles, or skill sets, used for matching were composed of three of the main categories of professional attributes from the ONET framework, namely: ``Skills", ``Abilities", and ``Fields of Knowledge". These three categories combined sum to exactly 120 competencies, and are detailed in the Appendix. The remaining categories of attributes (e.g. ``Interests", ``Work Values") do not constitute ``competencies" in the strict sense of the word, so they were not included in the analysis. Additionally, a few of the original attribute names were changed to reduce ambiguity (e.g. from ``Design" to ``Industrial Design").
+
+% As the ONET database contains too many career paths, for this exercise, we only consider four occupations. These are: mechanical engineers, physicists, credit analysts, and dishwashers. Their skill sets are detailed in the table below:
+
+% Results
+\section{Results}
+
+\subsection{Most Compatible Occupations}
+
+\MatchesEngineers
+
+\MatchesPhysicists
+
+\MatchesCreditAnalysts
+
+\MatchesDishwashers
+
+\subsection{Similarity Matrix}
+
+\SimilarityMatrix
+% \begin{table}[H]
+%         \begin{talltblr}[
+%         caption = {Similarity Matrix},
+%         label = {table:similarity_matrix},
+%         remark{Note 1} = {Similarity scores estimated with Euclidean matching and linear weights.},
+%         remark{Note 2} = {Comparison occupations on the horizontal axis.},
+%         remark{Source} = {Author's calculation based on ONET (2024).}
+%         ]{
+%         colspec = {X[c, m]X[c, m]X[c, m]X[c, m]X[c, m]},
+%         width = \linewidth
+%         }
+%             \toprule
+%                 & Mechanical Engineers & Physicists & Credit Analysts & Dishwashers \\ 
+%             \midrule
+%                 Mechanical Engineers & 1.00 & 0.80 & 0.68 & 0.47 \\ 
+%                 Physicists & 0.83 & 1.00 & 0.65 & 0.42 \\ 
+%                 Credit Analysts & 0.82 & 0.71 & 1.00 & 0.61 \\ 
+%                 Dishwashers & 0.67 & 0.59 & 0.69 & 1.00 \\ 
+%             \bottomrule
+%         \end{talltblr}
+% \end{table}
+
+as noted on the table, we reiterate comparison occupations are displayed on the horizontal, meaning the table should be read vertically. this is because the normalization and weighting procedures employed imply the characteristic symmetry of Euclidean distance is lost, so that: $s(x,y) = s(y,x) \iff x = y$.
+
+thus, engineers have 67\% compatibility with dishwashers; but dishwashers have only 47\% compatibility with engineers.
+
+% Discussion
+\section{Discussion}
+accuracy of results: top matches
+\\ accuracy of results: similarity matrix
+\\ cite factors that were deliberately left out of this paper
+\\ importance of competency vs preference for young users and users transitioning careers
+\\ criticize ONET data
+\\ clickbait title: how to pick the \textit{right} occupation is more complex
+indeed, perhaps a more appropriate title would be how to statistically pick \textit{an} occupation. but even if this brief introductory paper does not accomplish the objective of choosing the \textit{right} occupation, surely it is, at least, a step in the \textit{right} direction.
+\\ and have also already developed methods for this
+\\ but these are topic for another time
+\\ bye bye!
+
+% Conclusion
+\section{Conclusion}
+reiterate everything
+\\reiterate this is but an initial sketch for quantitative career matching
+\\reiterate we already developed superior methods
+
+% References
+\section{References}
+[onet online about]
+[soc]
+[Euclidean distance formula]
+[onet database]
+
+% Appendices
+\newpage
+\section{Appendices}
+% \subsection{Detailed Skill Sets}
+
+% \begin{longtblr}[
+%     caption = {Detailed Skill Sets},
+%     label = {table:detailed_skill_sets},
+%     % remark{Note 1} = {Similarity scores estimated with Euclidean matching and linear weights.},
+%     % remark{Note 2} = {Comparison occupations on the horizontal axis.},
+%     remark{Source} = {ONET (2024).}
+% ]{
+%     colspec = {X[1.5, c, m]X[1, c, m]X[1, c, m]X[1, c, m]X[1, c, m]},
+%     width = \linewidth,
+%     rowhead = 1,
+%     rowfoot = 0
+% }
+%     \toprule
+%         Competency & Mechanical Engineers & Physicists & Credit Analysts & Dishwashers \\
+%     \midrule
+    
+%     Engineering and Technology & 87 & 86 & 13 & 0 \\ 
+%     Industrial Design & 84 & 45 & 0 & 0 \\ 
+%     Applied Mathematics & 79 & 94 & 68 & 0 \\ 
+%     Mechanical & 78 & 28 & 0 & 12 \\ 
+%     Physics & 73 & 97 & 0 & 0 \\ 
+%     Pure Mathematics & 70 & 79 & 59 & 14 \\ 
+%     Reading Comprehension & 70 & 84 & 57 & 30 \\ 
+%     Deductive Reasoning & 70 & 79 & 64 & 29 \\ 
+%     Oral Expression & 70 & 82 & 59 & 30 \\ 
+%     Oral Comprehension & 70 & 84 & 59 & 32 \\ 
+%     Complex Problem-Solving & 68 & 70 & 43 & 30 \\ 
+%     Mathematical Reasoning & 68 & 84 & 59 & 16 \\ 
+%     Written Comprehension & 68 & 79 & 59 & 29 \\ 
+%     Computers and Electronics & 67 & 83 & 43 & 0 \\ 
+%     Natural Science & 66 & 82 & 5 & 0 \\ 
+%     Operations Analysis & 66 & 52 & 34 & 0 \\ 
+%     Active Learning & 63 & 79 & 52 & 29 \\ 
+%     Information Ordering & 63 & 71 & 52 & 30 \\ 
+%     Critical Thinking & 61 & 70 & 57 & 30 \\ 
+%     Monitoring & 61 & 57 & 43 & 30 \\ 
+%     Number Facility & 61 & 79 & 63 & 16 \\ 
+%     Judgment and Decision & 59 & 64 & 54 & 30 \\ 
+%     Problem Sensitivity & 59 & 70 & 57 & 29 \\ 
+%     Inductive Reasoning & 59 & 79 & 59 & 29 \\ 
+%     Category Flexibility & 59 & 73 & 50 & 29 \\ 
+%     Written Expression & 59 & 80 & 57 & 23 \\ 
+%     Active Listening & 57 & 68 & 57 & 32 \\ 
+%     Writing & 57 & 71 & 55 & 25 \\ 
+%     Quality Control Analysis & 57 & 46 & 11 & 29 \\ 
+%     Originality & 57 & 75 & 37 & 25 \\ 
+%     Near Vision & 57 & 57 & 61 & 34 \\ 
+%     Native Language & 57 & 70 & 60 & 38 \\ 
+%     Administration and Management & 57 & 54 & 42 & 37 \\ 
+%     Chemistry & 56 & 61 & 0 & 21 \\ 
+%     Speaking & 55 & 68 & 57 & 30 \\ 
+%     Systems Analysis & 55 & 57 & 43 & 16 \\ 
+%     Systems Evaluation & 55 & 55 & 45 & 16 \\ 
+%     Fluency of Ideas & 55 & 73 & 41 & 27 \\ 
+%     Visualization & 55 & 61 & 25 & 29 \\ 
+%     Technology Design & 54 & 48 & 0 & 0 \\ 
+%     Operations Monitoring & 54 & 34 & 14 & 30 \\ 
+%     Speech Recognition & 54 & 57 & 50 & 30 \\ 
+%     Time Management & 52 & 52 & 43 & 30 \\ 
+%     Instructing & 52 & 66 & 34 & 20 \\ 
+%     Troubleshooting & 52 & 29 & 0 & 29 \\ 
+%     Administrative & 51 & 40 & 59 & 0 \\ 
+%     Education and Training & 51 & 72 & 29 & 41 \\ 
+%     Learning Strategies & 50 & 71 & 36 & 18 \\ 
+%     Coordination & 50 & 48 & 36 & 30 \\ 
+%     Persuasion & 50 & 50 & 36 & 27 \\ 
+%     Selective Attention & 50 & 57 & 41 & 30 \\ 
+%     Production and Processing & 49 & 34 & 29 & 0 \\ 
+%     Perceptual Speed & 48 & 46 & 45 & 30 \\ 
+%     Flexibility of Closure & 48 & 55 & 45 & 29 \\ 
+%     Speech Clarity & 48 & 71 & 45 & 27 \\ 
+%     Customer and Personal Service & 48 & 37 & 39 & 38 \\ 
+%     Far Vision & 46 & 52 & 30 & 32 \\ 
+%     Management of Personnel Resources & 45 & 45 & 27 & 29 \\ 
+%     Negotiation & 43 & 39 & 39 & 29 \\ 
+%     Speed of Closure & 43 & 55 & 41 & 29 \\ 
+%     Management of Material Resources & 41 & 32 & 13 & 13 \\ 
+%     Service Orientation & 41 & 43 & 43 & 29 \\ 
+%     Social Perceptiveness & 41 & 45 & 41 & 29 \\ 
+%     Visual Color Discrimination & 41 & 41 & 21 & 29 \\ 
+%     Management of Financial Resources & 39 & 30 & 27 & 11 \\ 
+%     Multitasking & 39 & 41 & 29 & 29 \\ 
+%     Hearing Sensitivity & 39 & 30 & 16 & 29 \\ 
+%     Installation & 37 & 0 & 0 & 0 \\ 
+%     Equipment Selection & 37 & 21 & 0 & 29 \\ 
+%     Memorization & 37 & 48 & 34 & 21 \\ 
+%     Auditory Attention & 37 & 32 & 21 & 29 \\ 
+%     Telecommunications & 37 & 23 & 7 & 0 \\ 
+%     Building and Construction & 36 & 15 & 16 & 0 \\ 
+%     Personnel and Human Resources & 35 & 38 & 23 & 0 \\ 
+%     Public Safety and Security & 35 & 26 & 15 & 26 \\ 
+%     Programming & 34 & 55 & 14 & 0 \\ 
+%     Operation and Control & 34 & 9 & 0 & 30 \\ 
+%     Depth Perception & 34 & 30 & 5 & 29 \\ 
+%     Sales and Marketing & 33 & 20 & 29 & 0 \\ 
+%     Finger Dexterity & 32 & 29 & 25 & 34 \\ 
+%     Law and Government & 32 & 28 & 54 & 28 \\ 
+%     Reaction Time & 30 & 0 & 0 & 29 \\ 
+%     Transportation & 28 & 12 & 0 & 33 \\ 
+%     Repairing & 25 & 0 & 0 & 29 \\ 
+%     Arm-Hand Steadiness & 25 & 0 & 11 & 41 \\ 
+%     Economics and Accounting & 25 & 26 & 74 & 0 \\ 
+%     Communications and Media & 25 & 46 & 23 & 19 \\ 
+%     Equipment Maintenance & 23 & 0 & 0 & 29 \\ 
+%     Medicine and Dentistry & 23 & 0 & 0 & 0 \\ 
+%     Geography & 21 & 15 & 25 & 0 \\ 
+%     Biology & 20 & 16 & 0 & 0 \\ 
+%     Trunk Strength & 14 & 14 & 14 & 43 \\ 
+%     Manual Dexterity & 14 & 0 & 9 & 52 \\ 
+%     Wrist-Finger Speed & 9 & 0 & 0 & 21 \\ 
+%     Spatial Orientation & 5 & 0 & 0 & 14 \\ 
+%     Rate Control & 5 & 0 & 0 & 32 \\ 
+%     Dynamic Flexibility & 0 & 0 & 0 & 0 \\ 
+%     Gross Body Equilibrium & 0 & 0 & 0 & 21 \\ 
+%     Extent Flexibility & 0 & 0 & 0 & 43 \\ 
+%     Gross Body Coordination & 0 & 0 & 0 & 30 \\ 
+%     Explosive Strength & 0 & 0 & 0 & 11 \\ 
+%     Static Strength & 0 & 0 & 0 & 39 \\ 
+%     Dynamic Strength & 0 & 0 & 0 & 25 \\ 
+%     Stamina & 0 & 0 & 0 & 32 \\ 
+%     Response Orientation & 0 & 0 & 0 & 29 \\ 
+%     Control Precision & 0 & 0 & 7 & 32 \\ 
+%     Multilimb Coordination & 0 & 0 & 0 & 37 \\ 
+%     Speed of Limb Movement & 0 & 0 & 0 & 30 \\ 
+%     Sound Localization & 0 & 0 & 0 & 14 \\ 
+%     Glare Sensitivity & 0 & 0 & 0 & 21 \\ 
+%     Night Vision & 0 & 0 & 0 & 14 \\ 
+%     Peripheral Vision & 0 & 0 & 0 & 14 \\ 
+%     History and Archeology & 0 & 0 & 13 & 0 \\ 
+%     Foreign Language & 0 & 0 & 0 & 0 \\ 
+%     Philosophy and Theology & 0 & 0 & 0 & 0 \\ 
+%     Fine Arts & 0 & 0 & 0 & 0 \\ 
+%     Therapy and Counseling & 0 & 21 & 0 & 0 \\ 
+%     Food Production & 0 & 0 & 0 & 0 \\ 
+%     Sociology and Anthropology & 0 & 0 & 16 & 0 \\ 
+%     Psychology & 0 & 28 & 10 & 0 \\ 
+%   \bottomrule
+% \end{longtblr}
+
+\end{document}

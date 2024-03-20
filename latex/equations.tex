@@ -1,0 +1,132 @@
+% Professional Attribute
+\newcommand{\EqnAttribute}{
+    \begin{gather}
+    \label{eqn:attribute}
+        a_{i}^{k} \in [0,100]
+    ,\end{gather}
+}
+
+% Skill Set
+\newcommand{\EqnSkillSet}{
+    \begin{gather}
+    \label{eqn:skill_set}
+        \boldsymbol{a_{\boldsymbol{k}}} = (a_{1}^{k}, ..., a_{m}^{k})
+    .\end{gather}
+}
+
+% Euclidean distance
+\newcommand{\EqnEuclideanDistance}{
+    \begin{gather}
+        \label{eqn:euclidean_distance}
+            d(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) = 
+            \norm{\boldsymbol{a_{\boldsymbol{k}}} - \boldsymbol{a_{q}}} = 
+            \sqrt{
+            \sum_{i = 1}^{m}{
+            (a_{i}^{k} - a_{i}^{q})^2
+            }
+            }
+        .\end{gather}
+}
+
+% Normalized Euclidean distance
+\newcommand{\EqnNormalizedDistance}{
+    \begin{gather}
+    \label{eqn:normalized_distance}
+        \tilde{d}(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) = 
+        \sqrt{
+        \frac{
+        \sum_{i = 1}^{m}{
+        (a_{i}^{k} - a_{i}^{q})^2
+        }
+        }{
+        \sum_{i = 1}^{m}{
+        \max(100 - a_{i}^{q}, a_{i}^{q})^2
+        }
+        }
+        }
+    .\end{gather}
+}
+
+% Similarity
+\newcommand{\EqnSimilarity}{
+    \begin{gather}
+    \label{eqn:similarity}
+        s(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) = 1 - \tilde{d}(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) 
+    .\end{gather}
+}
+
+% Weighted Euclidean distance
+\newcommand{\EqnWeightedDistance}{
+    \begin{gather}
+    \label{eqn:weighted_distance}
+        \tilde{d}_w(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) = 
+        \sqrt{
+        \frac{
+        \sum_{i = 1}^{m}{
+        a_{i}^{q} (a_{i}^{k} - a_{i}^{q})^2
+        }
+        }{
+        \sum_{i = 1}^{m}{
+        a_{i}^{q} \max(100 - a_{i}^{q}, a_{i}^{q})^2
+        }
+        }
+        }
+    .\end{gather}
+}
+
+\newcommand{\EqnWeightedSimilarity}{
+    \begin{gather}
+    \label{eqn:weighted_similarity}
+        s_w(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) = 1 - \tilde{d}_w(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}})
+    ,\end{gather}
+}
+
+% Distance derivative
+\newcommand{\EqnDistanceDerivative}{
+    \begin{gather}
+    \label{eqn:distance_derivative}
+        \frac{
+        \partial{\tilde{d}(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}})}
+        }{
+            \partial{a_{i}^{k}}
+        } =
+        \frac{
+            \tilde{d}(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) \times ({a_i^{k}-a_i^{q}})
+        }{
+            \sum_{i=1}^{m}{(a_i^{k}-a_i^{q})^2}
+        }
+        > 0 \iff
+        \frac{
+        \partial{s(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}})}}
+        {\partial{a_{i}^{k}}} < 0
+    .\end{gather}
+}
+
+% \newcommand{\EqnDistanceDerivative}{
+%     \begin{gather}
+%     \label{eqn:distance_derivative}
+%         \frac{
+%         \partial{\tilde{d}(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}})}}
+%         {\partial{a_{i}^{k}}} > 0 \iff
+%         \frac{
+%         \partial{s(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}})}}
+%         {\partial{a_{i}^{k}}} < 0
+%     .\end{gather}
+% }
+
+% Unweighted vs Weighted distance
+\newcommand{\EqnUnweightedWeightedDistances}{
+    \begin{gather}
+    \label{eqn:unweighted_vs_weighted_distance}
+        \tilde{d}_w(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) \leq
+        \tilde{d}(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}})
+    .\end{gather}
+}
+
+% Similarity scaling
+\newcommand{\SimilarityScaling}{
+    \begin{gather}
+    \label{eqn:similarity_scaling}
+        s_w(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}}) = 1 - f(\tilde{d}_w(\boldsymbol{a_{\boldsymbol{k}}}, \boldsymbol{a_{q}})),
+    \end{gather}
+}

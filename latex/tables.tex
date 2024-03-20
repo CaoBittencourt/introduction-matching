@@ -1,0 +1,356 @@
+% General Occupational Statistics
+\newcommand{\GeneralOccupationalStatistics}{
+    \begin{longtblr}[
+        caption = {General Occupational Statistics},
+        label = {tab:onet_careers},
+        note{1} = {Number of SOC occupations plus variants.},
+        note{2} = {Total employment levels in the United States in 2022.},
+        note{3} = {Employment-weighted mean wages in the United States in 2022.},
+        note{4} = {Total cluster wages as a percentage of total wages in the United States in 2022.},
+        remark{Source} = {\cites{bls2022data}{onet2023data}.}
+    ]{
+        colspec = {X[0.5, l, m]X[0, c, m]X[0.25, c, m]X[0.25, c, m]X[0, c, m]},
+        width = \linewidth,
+        rowhead = 1,
+        rowfoot = 0
+    }
+        \toprule
+            Cluster & N\TblrNote{1} & Employment\TblrNote{2} & Wage\TblrNote{3} & Market Share\TblrNote{4} \\ 
+        \midrule
+            Business Management \& Administration &  65 & 26,639,371 & \$59,924.00 & 21.05\% \\ 
+            Health Science &  99 & 16,856,404 & \$62,753.00 & 13.95\% \\ 
+            Marketing &  26 & 13,961,830 & \$45,512.00 & 8.38\% \\ 
+            Manufacturing & 138 & 13,644,785 & \$44,169.00 & 7.95\% \\ 
+            Hospitality &  42 & 17,416,290 & \$28,965.00 & 6.65\% \\ 
+            Transportation, Distribution \& Logistics &  62 & 11,018,200 & \$45,511.00 & 6.61\% \\ 
+            Architecture \& Construction &  86 & 9,005,327 & \$53,142.00 & 6.31\% \\ 
+            Education \& Training &  64 & 7,266,480 & \$62,621.00 & 6.00\% \\ 
+            Finance &  22 & 5,255,514 & \$70,325.00 & 4.87\% \\ 
+            Law, Public Safety, Corrections \& Security &  35 & 4,790,620 & \$61,985.00 & 3.92\% \\ 
+            Information Technology &  22 & 3,588,065 & \$82,061.00 & 3.88\% \\ 
+            Human Services &  38 & 7,823,620 & \$36,809.00 & 3.80\% \\ 
+            Science, Technology, Engineering \& Mathematics &  70 & 2,207,815 & \$100,683.00 & 2.93\% \\ 
+            Agriculture, Food \& Natural Resources &  40 & 2,140,244 & \$51,134.00 & 1.44\% \\ 
+            Arts, Audio/Video Technology \& Communications &  40 & 1,692,270 & \$57,836.00 & 1.29\% \\ 
+            Government \& Public Administration &  24 & 1,166,588 & \$62,636.00 & 0.96\% \\
+        \bottomrule
+    \end{longtblr}
+}
+
+% Summary of Occupations
+\newcommand{\SummaryOccupations}{
+    \begin{table}[H]
+        \centering
+            \begin{talltblr}[
+            caption = {Summary of Sample Occupations},
+            label = {tab:summary_occupations},
+            note{1} = {``STEM" stands for ``Science, Technology, Engineering, and Mathematics".},
+            note{2} = {Total employment levels in the United States in 2022.},
+            note{3} = {Median wages in the United States in 2022.},
+            remark{Source} = {\cites{bls2022data}{onet2023data}.}
+            ]{
+            colspec = {ccccc},
+            % colspec = {X[c, m]Q[c, m]X[c, m]X[c, m]X[c, m]},
+            width = \linewidth
+            }
+                \toprule
+                    SOC & Occupation & Cluster & Employment\TblrNote{2} & Wage\TblrNote{3} \\ 
+                \midrule
+                    19-2012 & Physicists & STEM\TblrNote{1} & 18,840 & \$152,430.00 \\
+                    17-2141 & Mechanical Engineers & STEM\TblrNote{1} & 277,560 & \$95,300.00 \\ 
+                    13-2041 & Credit Analysts & Finance & 71,960 & \$77,440.00 \\ 
+                    35-9021 & Dishwashers & Hospitality & 431,840 & \$28,130.00 \\ 
+                \bottomrule
+            \end{talltblr}
+    \end{table}
+} 
+
+% Mechanical Engineers
+\newcommand{\MatchesEngineers}{
+    \begin{longtblr}[
+        caption = {Best Career Matches -- Mechanical Engineers},
+        label = {tab:similarity_engineers},
+        remark{Note} = {Similarity scores estimated with Euclidean matching and linear weights.},
+        remark{Source} = {Author's calculation based on \cite{onet2023data}.}
+    ]{
+        colspec = {X[l, m]X[0, c, m]},
+        width = \linewidth,
+        rowhead = 1,
+        rowfoot = 0
+    }
+        \toprule
+            Comparison Occupation & Similarity \\ 
+        \midrule
+            Mechanical Engineers & 1.00 \\ 
+            Aerospace Engineers & 0.90 \\ 
+            Marine Engineers and Naval Architects & 0.88 \\ 
+            Nuclear Engineers & 0.88 \\ 
+            Mechatronics Engineers & 0.87 \\ 
+            Microsystems Engineers & 0.86 \\ 
+            Photonics Engineers & 0.86 \\ 
+            Fuel Cell Engineers & 0.86 \\ 
+            Automotive Engineers & 0.86 \\ 
+            Materials Engineers & 0.86 \\ 
+            Mining and Geological Engineers, Including Mining Safety Engineers & 0.86 \\
+        \bottomrule
+    \end{longtblr}
+}
+
+% Physicists
+\newcommand{\MatchesPhysicists}{
+    \begin{longtblr}[
+        caption = {Best Career Matches -- Physicists},
+        label = {tab:similarity_physicists},
+        remark{Note} = {Similarity scores estimated with Euclidean matching and linear weights.},
+        remark{Source} = {Author's calculation based on \cite{onet2023data}.}
+    ]{
+        colspec = {X[l, m]X[0, c, m]},
+        width = \linewidth,
+        rowhead = 1,
+        rowfoot = 0
+    }
+        \toprule
+            Comparison Occupation & Similarity \\ 
+        \midrule
+            Physicists & 1.00 \\ 
+            Astronomers & 0.85 \\ 
+            Mathematicians & 0.80 \\ 
+            Physics Teachers, Postsecondary & 0.80 \\ 
+            Materials Scientists & 0.79 \\ 
+            Engineering Teachers, Postsecondary & 0.79 \\ 
+            Nanosystems Engineers & 0.78 \\ 
+            Aerospace Engineers & 0.77 \\ 
+            Biochemists and Biophysicists & 0.77 \\ 
+            Nuclear Engineers & 0.77 \\ 
+            Computer and Information Research Scientists & 0.77 \\ 
+        \bottomrule
+    \end{longtblr}
+}
+
+% Credit Analysts
+\newcommand{\MatchesCreditAnalysts}{
+    \begin{longtblr}[
+        caption = {Best Career Matches -- Credit Analysts},
+        label = {tab:similarity_credit_analysts},
+        remark{Note} = {Similarity scores estimated with Euclidean matching and linear weights.},
+        remark{Source} = {Author's calculation based on \cite{onet2023data}.}
+    ]{
+        colspec = {X[l, m]X[0, c, m]},
+        width = \linewidth,
+        rowhead = 1,
+        rowfoot = 0
+    }
+        \toprule
+            Comparison Occupation & Similarity \\ 
+        \midrule
+            Credit Analysts & 1.00 \\ 
+            Accountants and Auditors & 0.87 \\ 
+            Loan Interviewers and Clerks & 0.86 \\ 
+            Budget Analysts & 0.85 \\ 
+            Securities, Commodities, and Financial Services Sales Agents & 0.85 \\ 
+            Financial Examiners & 0.85 \\ 
+            Business Intelligence Analysts & 0.85 \\ 
+            Tax Preparers & 0.85 \\ 
+            Insurance Underwriters & 0.84 \\ 
+            Bookkeeping, Accounting, and Auditing Clerks & 0.84 \\ 
+            Tax Examiners and Collectors, and Revenue Agents & 0.83 \\ 
+        \bottomrule
+    \end{longtblr}
+}
+
+% Dishwashers
+\newcommand{\MatchesDishwashers}{
+    \begin{longtblr}[
+        caption = {Best Career Matches -- Dishwashers},
+        label = {tab:similarity_dishwashers},
+        remark{Note} = {Similarity scores estimated with Euclidean matching and linear weights.},
+        remark{Source} = {Author's calculation based on \cite{onet2023data}.}
+    ]{
+        colspec = {X[l, m]X[0, c, m]},
+        width = \linewidth,
+        rowhead = 1,
+        rowfoot = 0
+    }
+        \toprule
+            Comparison Occupation & Similarity \\ 
+        \midrule
+            Dishwashers & 1.00 \\ 
+            Janitors and Cleaners, Except Maids and Housekeeping Cleaners & 0.88 \\ 
+            Maids and Housekeeping Cleaners & 0.88 \\ 
+            Pressers, Textile, Garment, and Related Materials & 0.87 \\ 
+            Models & 0.87 \\ 
+            Postal Service Mail Sorters, Processors, and Processing Machine Operators & 0.87 \\ 
+            Sewing Machine Operators & 0.86 \\ 
+            Laundry and Dry-Cleaning Workers & 0.86 \\ 
+            Orderlies & 0.86 \\ 
+            Cutters and Trimmers, Hand & 0.86 \\ 
+            Shoe and Leather Workers and Repairers & 0.86 \\
+        \bottomrule
+    \end{longtblr}
+}
+
+% Similarity matrix
+\newcommand{\SimilarityMatrix}{
+    \begin{table}[H]
+        \centering
+        \begin{talltblr}[
+            caption = {Similarity Matrix},
+            label = {tab:similarity_matrix},
+            remark{Note 1} = {Similarity scores estimated with Euclidean matching and linear weights.},
+            remark{Note 2} = {Comparison occupations on the horizontal axis.},
+            remark{Source} = {Author's calculation based on \cite{onet2023data}.}
+        ]{
+            colspec = {X[c, m]X[c, m]X[c, m]X[c, m]X[c, m]},
+            width = \linewidth
+        }
+            \toprule
+                & Mechanical Engineers & Physicists & Credit Analysts & Dishwashers \\ 
+            \midrule
+                Mechanical Engineers & 1.00 & 0.75 & 0.54 & 0.38 \\ 
+                Physicists & 0.80 & 1.00 & 0.57 & 0.34 \\ 
+                Credit Analysts & 0.75 & 0.66 & 1.00 & 0.54 \\ 
+                Dishwashers & 0.62 & 0.53 & 0.66 & 1.00 \\ 
+            \bottomrule
+        \end{talltblr}
+    \end{table}
+}
+
+% Detailed skill sets
+\newcommand{\DetailedSkillSets}{
+    \begin{longtblr}[
+        caption = {Detailed Skill Sets},
+        label = {tab:detailed_skill_sets},
+        remark{Source} = {\cite{onet2023data}.}
+    ]{
+        % colspec = {X[1.5, c, m]X[1, c, m]X[1, c, m]X[1, c, m]X[1, c, m]},
+        colspec = {X[0.4, l, m]X[0.2, c, m]X[0.2, c, m]X[0.2, c, m]X[0.2, c, m]},
+        width = \linewidth,
+        rowhead = 1,
+        rowfoot = 0
+    }
+        \toprule
+            Competency & Mechanical Engineers & Physicists & Credit Analysts & Dishwashers \\
+        \midrule
+            Engineering and Technology & 87 & 86 & 13 & 0 \\ 
+            Industrial Design & 84 & 45 & 0 & 0 \\ 
+            Applied Mathematics & 79 & 94 & 68 & 0 \\ 
+            Mechanical & 78 & 28 & 0 & 12 \\ 
+            Physics & 73 & 97 & 0 & 0 \\ 
+            Oral Comprehension & 70 & 84 & 59 & 32 \\ 
+            Reading Comprehension & 70 & 84 & 57 & 30 \\ 
+            Oral Expression & 70 & 82 & 59 & 30 \\ 
+            Deductive Reasoning & 70 & 79 & 64 & 29 \\ 
+            Pure Mathematics & 70 & 79 & 59 & 14 \\ 
+            Mathematical Reasoning & 68 & 84 & 59 & 16 \\ 
+            Written Comprehension & 68 & 79 & 59 & 29 \\ 
+            Complex Problem-Solving & 68 & 70 & 43 & 30 \\ 
+            Computers and Electronics & 67 & 83 & 43 & 0 \\ 
+            Natural Science & 66 & 82 & 5 & 0 \\ 
+            Operations Analysis & 66 & 52 & 34 & 0 \\ 
+            Active Learning & 63 & 79 & 52 & 29 \\ 
+            Information Ordering & 63 & 71 & 52 & 30 \\ 
+            Number Facility & 61 & 79 & 63 & 16 \\ 
+            Critical Thinking & 61 & 70 & 57 & 30 \\ 
+            Monitoring & 61 & 57 & 43 & 30 \\ 
+            Written Expression & 59 & 80 & 57 & 23 \\ 
+            Inductive Reasoning & 59 & 79 & 59 & 29 \\ 
+            Category Flexibility & 59 & 73 & 50 & 29 \\ 
+            Problem Sensitivity & 59 & 70 & 57 & 29 \\ 
+            Judgment and Decision & 59 & 64 & 54 & 30 \\ 
+            Originality & 57 & 75 & 37 & 25 \\ 
+            Writing & 57 & 71 & 55 & 25 \\ 
+            Native Language & 57 & 70 & 60 & 38 \\ 
+            Active Listening & 57 & 68 & 57 & 32 \\ 
+            Near Vision & 57 & 57 & 61 & 34 \\ 
+            Administration and Management & 57 & 54 & 42 & 37 \\ 
+            Quality Control Analysis & 57 & 46 & 11 & 29 \\ 
+            Chemistry & 56 & 61 & 0 & 21 \\ 
+            Fluency of Ideas & 55 & 73 & 41 & 27 \\ 
+            Speaking & 55 & 68 & 57 & 30 \\ 
+            Visualization & 55 & 61 & 25 & 29 \\ 
+            Systems Analysis & 55 & 57 & 43 & 16 \\ 
+            Systems Evaluation & 55 & 55 & 45 & 16 \\ 
+            Speech Recognition & 54 & 57 & 50 & 30 \\ 
+            Technology Design & 54 & 48 & 0 & 0 \\ 
+            Operations Monitoring & 54 & 34 & 14 & 30 \\ 
+            Instructing & 52 & 66 & 34 & 20 \\ 
+            Time Management & 52 & 52 & 43 & 30 \\ 
+            Troubleshooting & 52 & 29 & 0 & 29 \\ 
+            Education and Training & 51 & 72 & 29 & 41 \\ 
+            Administrative & 51 & 40 & 59 & 0 \\ 
+            Learning Strategies & 50 & 71 & 36 & 18 \\ 
+            Selective Attention & 50 & 57 & 41 & 30 \\ 
+            Persuasion & 50 & 50 & 36 & 27 \\ 
+            Coordination & 50 & 48 & 36 & 30 \\ 
+            Production and Processing & 49 & 34 & 29 & 0 \\ 
+            Speech Clarity & 48 & 71 & 45 & 27 \\ 
+            Flexibility of Closure & 48 & 55 & 45 & 29 \\ 
+            Perceptual Speed & 48 & 46 & 45 & 30 \\ 
+            Customer and Personal Service & 48 & 37 & 39 & 38 \\ 
+            Far Vision & 46 & 52 & 30 & 32 \\ 
+            Management of Personnel Resources & 45 & 45 & 27 & 29 \\ 
+            Speed of Closure & 43 & 55 & 41 & 29 \\ 
+            Negotiation & 43 & 39 & 39 & 29 \\ 
+            Social Perceptiveness & 41 & 45 & 41 & 29 \\ 
+            Service Orientation & 41 & 43 & 43 & 29 \\ 
+            Visual Color Discrimination & 41 & 41 & 21 & 29 \\ 
+            Management of Material Resources & 41 & 32 & 13 & 13 \\ 
+            Multitasking & 39 & 41 & 29 & 29 \\ 
+            Management of Financial Resources & 39 & 30 & 27 & 11 \\ 
+            Hearing Sensitivity & 39 & 30 & 16 & 29 \\ 
+            Memorization & 37 & 48 & 34 & 21 \\ 
+            Auditory Attention & 37 & 32 & 21 & 29 \\ 
+            Telecommunications & 37 & 23 & 7 & 0 \\ 
+            Equipment Selection & 37 & 21 & 0 & 29 \\ 
+            Installation & 37 & 0 & 0 & 0 \\ 
+            Building and Construction & 36 & 15 & 16 & 0 \\ 
+            Personnel and Human Resources & 35 & 38 & 23 & 0 \\ 
+            Public Safety and Security & 35 & 26 & 15 & 26 \\ 
+            Programming & 34 & 55 & 14 & 0 \\ 
+            Depth Perception & 34 & 30 & 5 & 29 \\ 
+            Operation and Control & 34 & 9 & 0 & 30 \\ 
+            Sales and Marketing & 33 & 20 & 29 & 0 \\ 
+            Finger Dexterity & 32 & 29 & 25 & 34 \\ 
+            Law and Government & 32 & 28 & 54 & 28 \\ 
+            Reaction Time & 30 & 0 & 0 & 29 \\ 
+            Transportation & 28 & 12 & 0 & 33 \\ 
+            Communications and Media & 25 & 46 & 23 & 19 \\ 
+            Economics and Accounting & 25 & 26 & 74 & 0 \\ 
+            Arm-Hand Steadiness & 25 & 0 & 11 & 41 \\ 
+            Repairing & 25 & 0 & 0 & 29 \\ 
+            Equipment Maintenance & 23 & 0 & 0 & 29 \\ 
+            Medicine and Dentistry & 23 & 0 & 0 & 0 \\ 
+            Geography & 21 & 15 & 25 & 0 \\ 
+            Biology & 20 & 16 & 0 & 0 \\ 
+            Trunk Strength & 14 & 14 & 14 & 43 \\ 
+            Manual Dexterity & 14 & 0 & 9 & 52 \\ 
+            Wrist-Finger Speed & 9 & 0 & 0 & 21 \\ 
+            Rate Control & 5 & 0 & 0 & 32 \\ 
+            Spatial Orientation & 5 & 0 & 0 & 14 \\ 
+            Psychology & 0 & 28 & 10 & 0 \\ 
+            Therapy and Counseling & 0 & 21 & 0 & 0 \\ 
+            Sociology and Anthropology & 0 & 0 & 16 & 0 \\ 
+            History and Archeology & 0 & 0 & 13 & 0 \\ 
+            Control Precision & 0 & 0 & 7 & 32 \\ 
+            Extent Flexibility & 0 & 0 & 0 & 43 \\ 
+            Static Strength & 0 & 0 & 0 & 39 \\ 
+            Multilimb Coordination & 0 & 0 & 0 & 37 \\ 
+            Stamina & 0 & 0 & 0 & 32 \\ 
+            Gross Body Coordination & 0 & 0 & 0 & 30 \\ 
+            Speed of Limb Movement & 0 & 0 & 0 & 30 \\ 
+            Response Orientation & 0 & 0 & 0 & 29 \\ 
+            Dynamic Strength & 0 & 0 & 0 & 25 \\ 
+            Gross Body Equilibrium & 0 & 0 & 0 & 21 \\ 
+            Glare Sensitivity & 0 & 0 & 0 & 21 \\ 
+            Sound Localization & 0 & 0 & 0 & 14 \\ 
+            Night Vision & 0 & 0 & 0 & 14 \\ 
+            Peripheral Vision & 0 & 0 & 0 & 14 \\ 
+            Explosive Strength & 0 & 0 & 0 & 11 \\ 
+            Dynamic Flexibility & 0 & 0 & 0 & 0 \\ 
+            Foreign Language & 0 & 0 & 0 & 0 \\ 
+            Philosophy and Theology & 0 & 0 & 0 & 0 \\ 
+            Fine Arts & 0 & 0 & 0 & 0 \\ 
+            Food Production & 0 & 0 & 0 & 0 \\
+        \bottomrule
+    \end{longtblr}
+}
