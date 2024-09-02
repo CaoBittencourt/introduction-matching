@@ -39,7 +39,7 @@
     In this introductory paper, we address the crucial, but highly neglected, subject of data-driven career choice and development. We begin by sketching out the most basic approach to quantitative career matching, and test our model by calculating career compatibility coefficients with data from the United States' primary source of occupational information, the O*NET framework. We, then, illustrate the results with a sample of occupations from O*NET's database, and describe the best matches for each selected career. Despite the model's simplicity, we found career matches to be very accurate, although not as precise as they would be had we employed superior methods. In the future, we expect to cover some advanced material, deliberately left out of this introduction, and detail more sophisticated and performant models.\\
 
     \noindent
-    \textbf{Keywords:} Career matching; Career compatibility; Career choice; Career development; Vocational choice; Occupational Information Network.
+    \textbf{Keywords:} Matching algorithms; Similarity coefficients; Career choice; Career development; Vocational choice; Occupational Information Network; O*NET.
 \end{abstract}
 
 % Table of contents
@@ -65,17 +65,17 @@ contributing to the significance of work.
 Given this overarching importance of career choice and development, we would
 expect to find many quantitative approaches to the issue in the scientific
 literature. Nonetheless, despite some competent efforts by psychometricians and
-personality theorists
-\parencites[e.g.][]{holland1959theory, holland1997making}{schein1978careerdynamics,
-    schein1993careeranchors}, not much has been done to address this problem in a
-purely data-driven manner.
+personality theorists \parencites[e.g.][]{holland1959theory,
+    holland1997making}{schein1978careerdynamics, schein1993careeranchors}, not much
+has been done to address this problem in a purely data-driven manner.
 
 In the late 1990s, however, a notable achievement in this area was brought
-about by the Occupational Information Network \parencite{onet1998data}. Sponsored by the United States Department of Labor, this
-program set out to quantify job requirements in a standardized fashion. Their
-research resulted in a robust database of career paths, which includes numeric
-estimates of competence levels for dozens of abilities; as well as several
-other characteristics, such as the frequency of typical work activities, the
+about by the Occupational Information Network \parencite{onet1998data}.
+Sponsored by the United States Department of Labor, this program set out to
+quantify job requirements in a standardized fashion. Their research resulted in
+a robust database of career paths, which includes numeric estimates of
+competence levels for dozens of abilities; as well as several other
+characteristics, such as the frequency of typical work activities, the
 seriousness of expected job hazards, etc. Their catalog of occupations is vast,
 and their data have been updated frequently for over two decades.
 
@@ -99,14 +99,15 @@ occupational information. It was developed during the mid 1990s, and published
 in 1998, by a team of public and private sector organizations, in partnership
 with the Department of Labor's Employment and Training Administration. Its aim
 is to facilitate the maintenance of a skilled workforce through the collection
-and dissemination of occupational data \parencites{mariani1999onet}{onet2024about}.
+and dissemination of occupational data
+\parencites{mariani1999onet}{onet2024about}.
 
 Essentially, the O*NET model provides a thorough, quantitative, description of
-hundreds of SOC \parencite[Standard Occupational Classification, see][]{bls2018soc} career paths in
-a vectorized format. O*NET accomplishes this task by systematically evaluating
-the competencies of actual people in the labor market, on a 0 to 100 scale, in
-order to derive numeric guidelines on what attributes are required for each
-position.
+hundreds of SOC \parencite[Standard Occupational Classification,
+    see][]{bls2018soc} career paths in a vectorized format. O*NET accomplishes this
+task by systematically evaluating the competencies of actual people in the
+labor market, on a 0 to 100 scale, in order to derive numeric guidelines on
+what attributes are required for each position.
 
 Therefore, the resulting ``career profiles" from O*NET's surveys are meant to
 be taken as ``canonical representations" of SOC occupations: they ``map out"
@@ -297,10 +298,15 @@ categories of attributes (e.g. ``Interests", ``Work Values") do not constitute
 the analysis. Additionally, a few of the original attribute names were changed
 to reduce ambiguity (e.g. from ``Design" to ``Industrial Design").
 
-Finally, all calculations were implemented in the R programming language, with
+Finally, calculations were implemented in the R programming language, with
 packages we wrote and published to carry out Euclidean matching and other
-algorithms \parencite{atlas.match}. The complete scripts and data can be found in an online
-repository \parencite{intro_career_matching}.
+algorithms \parencite{atlas.match}. All scripts and data can be found in an
+online Git repository \parencite{intro_career_matching}, along with complete
+matching tables for every one of the 873 SOC careers.
+% Finally, all calculations were implemented in the R programming language, with
+% packages we wrote and published to carry out Euclidean matching and other
+% algorithms \parencite{atlas.match}. The complete scripts and data can be found in an online
+% repository \parencite{intro_career_matching}.
 
 % Results
 \section{Results}
